@@ -3,7 +3,7 @@
 Need To Clean All Your Docker?
 
 ```bash
-docker system prune -a - -volumes -f
+docker system prune -a --volumes -f
 ```
 
 ## Putting In Development Mode
@@ -33,7 +33,7 @@ docker compose -f docker-compose.development.yml up
 To Run Migrations, Tests ... Etc, Run The App With Whatever Is Needed:
 
 ```bash
-docker compose -f docker-compose.development.yml run app rails db: drop db: create db: migrate
+docker compose -f docker-compose.development.yml run app rails db:drop db:create db:migrate
 ```
 
 ## Rails Commands
@@ -42,7 +42,7 @@ Example Of Interaction Between Computer And Container:
 
 ```bash
 docker compose -f docker-compose.development.yml run app rails d model comment
-docker compose -f docker-compose.development.yml run app rails g model comment post: references comment: text
+docker compose -f docker-compose.development.yml run app rails g model comment post:references comment:text
 docker compose -f docker-compose.development.yml run app rails c
 ```
 
@@ -51,13 +51,13 @@ docker compose -f docker-compose.development.yml run app rails c
 For Tests For Example Run `Guard`:
 
 ```bash
-docker compose -f docker-compose.development.yml run app bundle exc guard
+docker compose -f docker-compose.development.yml run app bundle exec guard
 ```
 
 For Migrations (Remembering That You May Need To Run Both In Development And Test):
 
 ```bash
-docker compose -f docker-compose.development.yml run app rails db: migrate
+docker compose -f docker-compose.development.yml run app rails db:migrate
 ```
 
 ## Putting Down
