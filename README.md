@@ -1,68 +1,75 @@
-# Instruções Docker
+# Docker Instructions
 
-Precisa limpar tudo do seu docker?
+Need To Clean All Your Docker?
 
 ```bash
-docker system prune -a --volumes -f
+docker system prune -a - -volumes -f
 ```
 
-Colocando em modo desenvolvimento
+## Putting In Development Mode
 
-Considerando que é necessário rodar com o seu usuário, rode
+Whereas It Is Necessary To Run With Your User, Run
 
 ```bash
 id -u
 ```
 
-E altere no arquivo Dockerfile.development com o valor que encontrou
+And Change The Dockerfile.Development File With The Value You Found
 
-Então a build você só precisa executar a primeira vez:
+So Build You Just Need To Run The First Time:
 
 ```bash
 docker compose -f docker-compose.development.yml build
 ```
 
-E para subir a aplicação rode:
+And To Climb The Application Rode:
 
 ```bash
 docker compose -f docker-compose.development.yml up
 ```
 
-Para rodar migrations, testes... etc, rode o serviço app com o que for necessário:
+## Migrations
+
+To Run Migrations, Tests ... Etc, Run The App With Whatever Is Needed:
 
 ```bash
-docker compose -f docker-compose.development.yml run app rails db:drop db:create db:migrate
+docker compose -f docker-compose.development.yml run app rails db: drop db: create db: migrate
 ```
 
-Exemplo de interação entre computador e container:
+## Rails Commands
+
+Example Of Interaction Between Computer And Container:
 
 ```bash
 docker compose -f docker-compose.development.yml run app rails d model comment
-docker compose -f docker-compose.development.yml run app rails g model comment post:references comment:text
+docker compose -f docker-compose.development.yml run app rails g model comment post: references comment: text
 docker compose -f docker-compose.development.yml run app rails c
 ```
 
-Para testes por exemplo execute `guard`:
+## Testing
+
+For Tests For Example Run `Guard`:
 
 ```bash
-docker compose -f docker-compose.development.yml run app bundle exec guard
+docker compose -f docker-compose.development.yml run app bundle exc guard
 ```
 
-Para migrations (lembrando que talvez precise rodar tanto em development quanto para test):
+For Migrations (Remembering That You May Need To Run Both In Development And Test):
 
 ```bash
-docker compose -f docker-compose.development.yml run app rails db:migrate
+docker compose -f docker-compose.development.yml run app rails db: migrate
 ```
 
-Caso queira parar com os serviços:
+## Putting Down
+
+If You Want To Stop The Services:
 
 ```bash
 docker compose -f docker-compose.development.yml down
 ```
 
-```
-Ruby on Rails com Docker e docker-compose em modo desenvolvimento
+## More
 
+Ruby On Rails With Docker And Docker-Compose In Development Mode
 
-Normalmente existem perguntas e detalhes sobre como desenvolver usando docker e docker-compose em modo desenvolvimento: a eu preciso buildar, a eu preciso subir e descer as coisas o tempo todo... Calma vamos lá
-```
+Usually There Are Questions And Details On How To Develop Using Docker And Docker-Compose In Development Mode: I Need To Build, Go Up And Down All The Time ... Calm Down Let's Go
